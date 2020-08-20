@@ -8,9 +8,9 @@ import java.util.Scanner;
 
 import com.simplilearn.lockme.model.UserCredentials;
 import com.simplilearn.lockme.model.Users;
-// For New Commit
+// Main Application
 public class Authentication {
-	//input data
+	//Input Data
 	private static Scanner keyboard;
 	private static Scanner input;
 	private static Scanner lockerInput;
@@ -57,7 +57,7 @@ public class Authentication {
 	public static void lockerOptions(String inpUsername) {
 		System.out.println("1 . Fetch All Stored Credentials ");
 		System.out.println("2 . Store Credentials ");
-		System.out.println("3.  Return To Main Menu");
+		System.out.println("3.  Exit");
 		int option = keyboard.nextInt();
 		switch(option) {
 			case 1 : 
@@ -67,7 +67,8 @@ public class Authentication {
 				storeCredentials(inpUsername);
 				break;
 			case 3 :
-				signInOptions();
+				exit = true;
+				System.out.println("Thanks For Using Our App");
 				break;
 			default :
 				System.out.println("Please select one valid option ^-^ ");
@@ -97,19 +98,10 @@ public class Authentication {
 		System.out.println("User Registration Suscessful !");
 		output.close();
 		
-		System.out.println("1 . Log In ");
-		System.out.println("2 . Create Another Registration ");
-		System.out.println("0.  Return To Main Menu");
+		System.out.println("0.  Exit");
 		int option = keyboard.nextInt();
 		switch(option) {
-			case 1 : 
-				loginUser();
-				break;
-				
-			case 2 :
-				
-				registerUser();
-				break;
+			
 			case 0:
 				exit = true;
 				System.out.println("Thanks For Using Our App");
@@ -155,7 +147,7 @@ public class Authentication {
 	}
 	
 	public static void welcomeScreen() {
-		System.out.println("========  Devloped By -> Suvam Mohapatra  ======");
+		System.out.println("=    Devloped By -> Suvam Mohapatra     =");
 		System.out.println("*					*");
 		System.out.println("*        <-Welcome To LockMe->     	*");
 		System.out.println("*   Your Personal Digital Locaker	*");
@@ -163,7 +155,7 @@ public class Authentication {
 		System.out.println("==========================================");
 		
 	}
-	//store credentials
+	//Store Credentials
 	public static void storeCredentials(String loggedInUser) {
 		System.out.println("==========================================");
 		System.out.println("*					*");
@@ -191,13 +183,30 @@ public class Authentication {
 		lockerOutput.println(userCredentials.getPassword());
 		
 		System.out.println("Your Credentials Are Stored Securely !");
-		
-		
-		
+	
 		lockerOutput.close();		
+	
+		System.out.println("     ");
+		System.out.println("0.  Exit");
+		int option = keyboard.nextInt();
+		switch(option) {
+			
+			case 0:
+				exit = true;
+				System.out.println("Thanks For Using Our App");
+				break;
+				
+			default :
+				System.out.println("Please select one valid option ^-^ ");
+				
+				
+	           break;
+	
+		}
+	
 	}
 	
-	//fetch credentials
+	//Fetch Credentials
 	public static void fetchCredentials(String inpUsername) {
 		System.out.println("==========================================");
 		System.out.println("*					             *");
@@ -209,18 +218,39 @@ public class Authentication {
 		
 		
 		while(lockerInput.hasNext()) {
-//			System.out.println(lockerInput.hasNext());
-			if(lockerInput.next().equals(inpUsername)) {
+ 		if(lockerInput.next().equals(inpUsername)) {
 				System.out.println("Site Name: "+lockerInput.next());
 				System.out.println("User Name: "+lockerInput.next());
-				System.out.println("User Password: "+lockerInput.next());
-				
-				
-			}
-			
-		}
+				System.out.println("User Password: "+lockerInput.next());}
 		
-	}
+			
+				
+				
+				}
+		{System.out.println("<***********************>");
+		System.out.println("     ");
+		System.out.println("0.  Exit");
+		int option = keyboard.nextInt();
+		switch(option) {
+			
+			case 0:
+				exit = true;
+				System.out.println("Thanks For Using Our App");
+				
+				break;
+				
+			default :
+				System.out.println("Please select one valid option ^-^ ");
+				
+				
+	           break;
+			
+		       }
+			}
+     	}
+		
+		
+	
 	
 	public static void initApp() {
 
@@ -228,16 +258,16 @@ public class Authentication {
 		File  lockerFile = new File("locker-file.txt");
 		
 		try {
-			//read data from db file
+			//Read data from database file
 			input = new Scanner(dbFile);
 			
-			//red data from locker file
+			//Read data from locker file
 			lockerInput = new Scanner(lockerFile);
 			
-			//read data from keyboard
+			//Read data from keyboard
 			keyboard = new Scanner(System.in);
 			
-			//out put 
+			//Out Put 
 			output = new PrintWriter( new FileWriter(dbFile,true));
 			lockerOutput = new PrintWriter( new FileWriter(lockerFile,true));
 			
